@@ -6,9 +6,16 @@ audio_cache/
 dectalk/
 
 discord.log
+logs/
+data/
 config/options.ini
 config/permissions.ini
+<<<<<<< HEAD
 *.suo
 MusicBot.pyproj
 *.sln
 config/autoplaylist.txt
+=======
+config/autoplaylist.txt
+config/autoplaylist_removed.txt
+>>>>>>> pr/5

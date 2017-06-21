@@ -1,10 +1,16 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import datetime
 import traceback
 =======
 import os.path
 import logging
 import datetime
+=======
+import os.path
+import logging
+import datetime
+>>>>>>> pr/5
 
 from random import shuffle
 from itertools import islice
@@ -14,23 +20,37 @@ from itertools import islice
 from random import shuffle
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 from .utils import get_header
 from .entry import URLPlaylistEntry
 from .exceptions import ExtractionError, WrongEntryTypeError
 =======
+=======
+>>>>>>> pr/5
 from urllib.error import URLError
 from youtube_dl.utils import ExtractorError, DownloadError, UnsupportedError
 
 from .utils import get_header
 from .constructs import Serializable
+<<<<<<< HEAD
 >>>>>>> pr/5
 from .lib.event_emitter import EventEmitter
 from .entry import URLPlaylistEntry, StreamPlaylistEntry
 from .exceptions import ExtractionError, WrongEntryTypeError
 
 log = logging.getLogger(__name__)
+=======
+from .lib.event_emitter import EventEmitter
+from .entry import URLPlaylistEntry, StreamPlaylistEntry
+from .exceptions import ExtractionError, WrongEntryTypeError
+>>>>>>> pr/5
 
+log = logging.getLogger(__name__)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> pr/5
 class Playlist(EventEmitter, Serializable):
     """
         A playlist is manages the list of songs that will be played.
@@ -395,7 +415,10 @@ class Playlist(EventEmitter, Serializable):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> pr/5
     def __json__(self):
         return self._enclose_json({
             'entries': list(self.entries)
@@ -413,4 +436,7 @@ class Playlist(EventEmitter, Serializable):
         # TODO: create a function to init downloading (since we don't do it here)?
         return pl
 
+<<<<<<< HEAD
+>>>>>>> pr/5
+=======
 >>>>>>> pr/5

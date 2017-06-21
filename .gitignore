@@ -11,10 +11,15 @@ data/
 config/options.ini
 config/permissions.ini
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.suo
 MusicBot.pyproj
 *.sln
 config/autoplaylist.txt
+=======
+config/autoplaylist.txt
+config/autoplaylist_removed.txt
+>>>>>>> pr/5
 =======
 config/autoplaylist.txt
 config/autoplaylist_removed.txt

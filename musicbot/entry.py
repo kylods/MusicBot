@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import asyncio
 import json
 import os
@@ -14,6 +15,8 @@ class BasePlaylistEntry:
         self.filename = None
         self.filename_thumbnail = None
 =======
+=======
+>>>>>>> pr/5
 import os
 import asyncio
 import logging
@@ -39,6 +42,9 @@ class EntryTypes(Enum):
 class BasePlaylistEntry(Serializable):
     def __init__(self):
         self.filename = None
+<<<<<<< HEAD
+>>>>>>> pr/5
+=======
 >>>>>>> pr/5
         self._is_downloading = False
         self._waiting_futures = []
@@ -51,6 +57,7 @@ class BasePlaylistEntry(Serializable):
         return bool(self.filename)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @classmethod
     def from_json(cls, playlist, jsonstring):
         raise NotImplementedError
@@ -58,6 +65,8 @@ class BasePlaylistEntry(Serializable):
     def to_json(self):
         raise NotImplementedError
 
+=======
+>>>>>>> pr/5
 =======
 >>>>>>> pr/5
     async def _download(self):
@@ -118,6 +127,7 @@ class URLPlaylistEntry(BasePlaylistEntry):
         self.download_folder = self.playlist.downloader.download_folder
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @classmethod
     def from_json(cls, playlist, jsonstring):
         data = json.loads(jsonstring)
@@ -150,10 +160,16 @@ class URLPlaylistEntry(BasePlaylistEntry):
         return self._enclose_json({
             'version': 1,
 >>>>>>> pr/5
+=======
+    def __json__(self):
+        return self._enclose_json({
+            'version': 1,
+>>>>>>> pr/5
             'url': self.url,
             'title': self.title,
             'duration': self.duration,
             'downloaded': self.is_downloaded,
+<<<<<<< HEAD
 <<<<<<< HEAD
             'filename': self.filename,
             'filename_thumbnail': self.filename_thumbnail,
@@ -168,6 +184,8 @@ class URLPlaylistEntry(BasePlaylistEntry):
         }
         return json.dumps(data, indent=2)
 =======
+=======
+>>>>>>> pr/5
             'expected_filename': self.expected_filename,
             'filename': self.filename,
             'full_filename': os.path.abspath(self.filename) if self.filename else self.filename,
@@ -207,6 +225,9 @@ class URLPlaylistEntry(BasePlaylistEntry):
             return entry
         except Exception as e:
             log.error("Could not load {}".format(cls.__name__), exc_info=e)
+<<<<<<< HEAD
+>>>>>>> pr/5
+=======
 >>>>>>> pr/5
 
     # noinspection PyTypeChecker
@@ -226,10 +247,14 @@ class URLPlaylistEntry(BasePlaylistEntry):
             # the generic extractor requires special handling
             if extractor == 'generic':
 <<<<<<< HEAD
+<<<<<<< HEAD
                 # print("Handling generic")
                 # remove thumbnail images from list
                 imgPattern = re.compile('(\.(jpg|jpeg|png|gif|bmp))$', flags=re.IGNORECASE)
                 flistdir = [f.rsplit('-', 1)[0] for f in os.listdir(self.download_folder) if not imgPattern.search(f)]
+=======
+                flistdir = [f.rsplit('-', 1)[0] for f in os.listdir(self.download_folder)]
+>>>>>>> pr/5
 =======
                 flistdir = [f.rsplit('-', 1)[0] for f in os.listdir(self.download_folder)]
 >>>>>>> pr/5
@@ -262,8 +287,12 @@ class URLPlaylistEntry(BasePlaylistEntry):
 
             else:
 <<<<<<< HEAD
+<<<<<<< HEAD
                 imgPattern = re.compile('(\.(jpg|jpeg|png|gif|bmp))$', flags=re.IGNORECASE)
                 ldir = [f for f in os.listdir(self.download_folder) if not imgPattern.search(f)]
+=======
+                ldir = os.listdir(self.download_folder)
+>>>>>>> pr/5
 =======
                 ldir = os.listdir(self.download_folder)
 >>>>>>> pr/5
@@ -277,6 +306,7 @@ class URLPlaylistEntry(BasePlaylistEntry):
                 if expected_fname_base in ldir:
                     self.filename = os.path.join(self.download_folder, expected_fname_base)
 <<<<<<< HEAD
+<<<<<<< HEAD
                     print("[Download] Cached:", self.url)
 
                 elif expected_fname_noex in flistdir:
@@ -288,6 +318,8 @@ class URLPlaylistEntry(BasePlaylistEntry):
                     ))
 
 =======
+=======
+>>>>>>> pr/5
                     log.info("Download cached: {}".format(self.url))
 
                 elif expected_fname_noex in flistdir:
@@ -297,6 +329,9 @@ class URLPlaylistEntry(BasePlaylistEntry):
                         self.expected_filename.rsplit('.', 1)[-1],
                         self.filename.rsplit('.', 1)[-1]
                     ))
+<<<<<<< HEAD
+>>>>>>> pr/5
+=======
 >>>>>>> pr/5
                 else:
                     await self._really_download()
@@ -314,7 +349,11 @@ class URLPlaylistEntry(BasePlaylistEntry):
     # noinspection PyShadowingBuiltins
     async def _really_download(self, *, hash=False):
 <<<<<<< HEAD
+<<<<<<< HEAD
         print("[Download] Started: '%s' [s%]" % (self.title, self.url)
+=======
+        log.info("Download started: {}".format(self.url))
+>>>>>>> pr/5
 =======
         log.info("Download started: {}".format(self.url))
 >>>>>>> pr/5
@@ -325,14 +364,20 @@ class URLPlaylistEntry(BasePlaylistEntry):
             raise ExtractionError(e)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         print("[Download] Complete: '%s' [%s]" % (self.title, self.url))
 
         if result is None:
 =======
+=======
+>>>>>>> pr/5
         log.info("Download complete: {}".format(self.url))
 
         if result is None:
             log.critical("YTDL has failed, everyone panic")
+<<<<<<< HEAD
+>>>>>>> pr/5
+=======
 >>>>>>> pr/5
             raise ExtractionError("ytdl broke and hell if I know why")
             # What the fuck do I do now?
@@ -340,10 +385,13 @@ class URLPlaylistEntry(BasePlaylistEntry):
         self.filename = unhashed_fname = self.playlist.downloader.ytdl.prepare_filename(result)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         # Search for file name with an image suffix
         imgPattern = re.compile(self.filename.lstrip(self.download_folder + os.sep).rsplit('.', 1)[0] + '(\.(jpg|jpeg|png|gif|bmp))$', re.IGNORECASE)
         self.filename_thumbnail = next(os.path.join(self.download_folder, f) for f in os.listdir(self.download_folder) if imgPattern.search(f))
 
+=======
+>>>>>>> pr/5
 =======
 >>>>>>> pr/5
         if hash:
@@ -359,7 +407,10 @@ class URLPlaylistEntry(BasePlaylistEntry):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> pr/5
 class StreamPlaylistEntry(BasePlaylistEntry):
     def __init__(self, playlist, url, title, *, destination=None, **meta):
         super().__init__()
@@ -438,4 +489,7 @@ class StreamPlaylistEntry(BasePlaylistEntry):
             # although maybe that should be at a slightly lower level
         finally:
             self._is_downloading = False
+<<<<<<< HEAD
+>>>>>>> pr/5
+=======
 >>>>>>> pr/5

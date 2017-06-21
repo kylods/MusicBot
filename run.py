@@ -395,6 +395,12 @@ def main():
         finally:
             if not m or not m.init_ok:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                if any(sys.exc_info()):
+                    # How to log this without redundant messages...
+                    traceback.print_exc()
+>>>>>>> pr/5
 =======
                 if any(sys.exc_info()):
                     # How to log this without redundant messages...

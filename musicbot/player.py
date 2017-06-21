@@ -99,9 +99,12 @@ class MusicPlayerRepeatState(Enum):
     ALL = 1     # Entire playlist repeats
     SINGLE = 2  # Currently playing song repeats
 
+<<<<<<< HEAD
     def __str__(self):
         return self.name
 
+=======
+>>>>>>> pr/5
 class MusicPlayer(EventEmitter, Serializable):
     def __init__(self, bot, voice_client, playlist):
         super().__init__()
@@ -110,11 +113,16 @@ class MusicPlayer(EventEmitter, Serializable):
         self.voice_client = voice_client
         self.playlist = playlist
 <<<<<<< HEAD
+<<<<<<< HEAD
         self.playlist.on('entry-added', self.on_entry_added)
         self.playlist.on('entry-removed', self.on_entry_removed)
         self._volume = bot.config.default_volume
         self.repeatState = MusicPlayerRepeatState.NONE
         self.skipRepeat = False
+=======
+        self.state = MusicPlayerState.STOPPED
+        self.skip_state = None
+>>>>>>> pr/5
 =======
         self.state = MusicPlayerState.STOPPED
         self.skip_state = None
@@ -144,6 +152,7 @@ class MusicPlayer(EventEmitter, Serializable):
             self.loop.call_later(2, self.play)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     def on_entry_removed(self, playlist, entry):
         if not self.bot.config.save_videos and entry:
             if any([entry.filename == e.filename for e in self.playlist.entries]):
@@ -153,6 +162,9 @@ class MusicPlayer(EventEmitter, Serializable):
             else:
                 # print("[Config:SaveVideos] Deleting file: %s" % os.path.relpath(entry.filename))
                 asyncio.ensure_future(self._delete_file(entry.filename))
+=======
+        self.emit('entry-added', player=self, playlist=playlist, entry=entry)
+>>>>>>> pr/5
 =======
         self.emit('entry-added', player=self, playlist=playlist, entry=entry)
 >>>>>>> pr/5
@@ -318,8 +330,14 @@ class MusicPlayer(EventEmitter, Serializable):
                 self._current_player = self._monkeypatch_player(self.voice_client.create_ffmpeg_player(
                     entry.filename,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     before_options="-nostdin",
                     options="-vn -b:a 128k",
+=======
+                    before_options=boptions,
+                    options=aoptions,
+                    stderr=subprocess.PIPE,
+>>>>>>> pr/5
 =======
                     before_options=boptions,
                     options=aoptions,

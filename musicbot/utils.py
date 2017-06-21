@@ -1,6 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import re
 import aiohttp
+=======
+import sys
+>>>>>>> pr/5
 =======
 import sys
 >>>>>>> pr/5
@@ -12,7 +16,10 @@ from hashlib import md5
 from .constants import DISCORD_MSG_CHAR_LIMIT
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> pr/5
 log = logging.getLogger(__name__)
 
 >>>>>>> pr/5
@@ -42,12 +49,15 @@ def write_file(filename, contents):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 def slugify(value):
     value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
     value = re.sub('[^\w\s-]', '', value).strip().lower()
     return re.sub('[-\s]+', '-', value)
 
 
+=======
+>>>>>>> pr/5
 =======
 >>>>>>> pr/5
 def sane_round_int(x):
@@ -97,7 +107,10 @@ def md5sum(filename, limit=0):
             fhash.update(chunk)
     return fhash.hexdigest()[-limit:]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> pr/5
 
 
 def fixg(x, dp=2):
@@ -172,4 +185,7 @@ def objdiff(obj1, obj2, *, access_attr=None, depth=0):
 
 def color_supported():
     return hasattr(sys.stderr, "isatty") and sys.stderr.isatty()
+<<<<<<< HEAD
+>>>>>>> pr/5
+=======
 >>>>>>> pr/5

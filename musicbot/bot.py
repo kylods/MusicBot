@@ -206,7 +206,7 @@ class MusicBot(discord.Client):
     async def _auto_summon(self):
         owner = self._get_owner(voice=True)
         if owner:
-            self.safe_print("KYLoS in \"%s\", joining..." % owner.voice_channel.name)
+            self.safe_print("KYLoS found in \"%s\", joining..." % owner.voice_channel.name)
             # TODO: Effort
             await self.cmd_summon(owner.voice_channel, owner, None)
             return owner.voice_channel
@@ -1236,10 +1236,10 @@ class MusicBot(discord.Client):
             self.config.bound_channels.difference_update(invalids)
 
             if chlist:
-                log.info("Bound to text channels:")
+                log.info("Set to text channel:")
                 [log.info(' - {}/{}'.format(ch.server.name.strip(), ch.name.strip())) for ch in chlist if ch]
             else:
-                print("Not bound to any text channels")
+                print("Not set to any text channels")
 
             if invalids and self.config.debug_mode:
                 print(flush=True)
@@ -1407,7 +1407,7 @@ class MusicBot(discord.Client):
 
         else:
             if self.blacklist.isdisjoint(user.id for user in user_mentions):
-                return Response('none of those users are in the blacklist.', reply=True, delete_after=10)
+                return Response('None of those users are in the blacklist.', reply=True, delete_after=10)
 
             else:
                 self.blacklist.difference_update(user.id for user in user_mentions)
@@ -2306,7 +2306,7 @@ class MusicBot(discord.Client):
             float(search_range)  # lazy check
             search_range = min(int(search_range), 1000)
         except:
-            return Response("enter a number.  NUMBER.  That means digits.  `15`.  Etc.", reply=True, delete_after=8)
+            return Response("Enter a number.  NUMBER.  That means digits.  `15`.  Etc.", reply=True, delete_after=8)
 
         await self.safe_delete_message(message, quiet=True)
 
@@ -2358,6 +2358,7 @@ class MusicBot(discord.Client):
             {command_prefix}pldump url
 
         Dumps the individual urls of a playlist
+		Great for adding to autoplaylist
         """
 
         try:
@@ -2463,7 +2464,7 @@ class MusicBot(discord.Client):
         Sends the user a list of their permissions.
         """
 
-        lines = ['Command permissions in %s\n' % server.name, '```', '```']
+        lines = ['Permissions in %s\n' % server.name, '```', '```']
 
         for perm in permissions.__dict__:
             if perm in ['user_list'] or permissions.__dict__[perm] == set():
@@ -2628,7 +2629,7 @@ class MusicBot(discord.Client):
             if not info:
                 raise exceptions.CommandError(
                     "Error extracting info from search string, youtubedl returned no data.  "
-                    "You may need to restart the bot if this continues to happen.", expire_in=30
+                    "Restart the bot if this continues to happen.", expire_in=30
                 )
 
             if not all(info.get('entries', [])):
@@ -2644,7 +2645,7 @@ class MusicBot(discord.Client):
         # TODO: Where ytdl gets the generic extractor version with no processing, but finds two different urls
 
         if 'entries' in info:
-            raise exceptions.CommandError("Cannot playnow playlists! You must specify a single song.", expire_in=30)
+            raise exceptions.CommandError("Playlists must use -play, not -playnow.", expire_in=30)
         else:
             if permissions.max_song_length and info.get('duration', 0) > permissions.max_song_length:
                 raise exceptions.PermissionsError(
@@ -2731,8 +2732,8 @@ class MusicBot(discord.Client):
 
         except discord.HTTPException:
             raise exceptions.CommandError(
-                "Failed to change name.  Did you change names too many times?  "
-                "Remember name changes are limited to twice per hour.")
+                "Failed to change name."
+                "Discord limits this to twice per hour.")
 
         except Exception as e:
             raise exceptions.CommandError(e, expire_in=20)
@@ -2882,7 +2883,7 @@ class MusicBot(discord.Client):
 
         if message.channel.is_private:
             if not (message.author.id == self.config.owner_id and command == 'joinserver'):
-                await self.send_message(message.channel, 'You cannot use this bot in private messages.')
+                await self.send_message(message.channel, 'You cant PM this bot. \nStop asking me out.')
                 return
 
         if message.author.id in self.blacklist and message.author.id != self.config.owner_id:

@@ -1,8 +1,13 @@
 import os.path
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MAIN_VERSION = '3.0'
 SUB_VERSION = ''
+=======
+MAIN_VERSION = '1.9.6'
+SUB_VERSION = '-review'
+>>>>>>> pr/5
 =======
 MAIN_VERSION = '1.9.6'
 SUB_VERSION = '-review'
